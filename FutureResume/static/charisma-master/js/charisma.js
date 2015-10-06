@@ -1,16 +1,16 @@
 $(document).ready(function () {
     //themes, change CSS with JS
     //default theme(CSS) is cerulean, change it if needed
-    var defaultTheme = 'slate';
+    //-var defaultTheme = 'slate';
 
     // revise for specific theme # KentChun33333
 	// - var currentTheme = $.cookie('currentTheme') == null ? defaultTheme : $.cookie('currentTheme');
-	var currentTheme = 'slate';
+	//var currentTheme = 'slate';
 	// +above
-    var msie = navigator.userAgent.match(/msie/i);
-    $.browser = {};
-    $.browser.msie = {};
-    switchTheme(currentTheme);
+    //-var msie = navigator.userAgent.match(/msie/i);
+    //-$.browser = {};
+    //-$.browser.msie = {};
+    //-switchTheme(currentTheme);
 
     $('.navbar-toggle').click(function (e) {
         e.preventDefault();
