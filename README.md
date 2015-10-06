@@ -1,13 +1,12 @@
-##############
-# 2015-10-06 #
-##############
+2015.10.06
+
 
 # Stack of the project 
-Database          : MongoDB + PostgreSQL
-UI                : Augular.js , Jquery, Jquery-mobile, Bootstarp
-Data Visulization : Highchart, echart
-Framework         : Django + Django-Rest-Framework + Phone-Gap
-Machine Learning  : python
+1. Database          : MongoDB + PostgreSQL
+2. UI                : Augular.js , Jquery, Jquery-mobile, Bootstarp
+3. Data Visulization : Highchart, echart
+4. Framework         : Django + Django-Rest-Framework + Phone-Gap
+5. Machine Learning  : python
 
 # Motivation 
 1. Try and learn some new tech
