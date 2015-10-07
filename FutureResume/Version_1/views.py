@@ -52,4 +52,8 @@ def login_user(request):
 def main_page(request):
 	context_dict={}
 	return render(request, 'version1/main_page.html', context_dict)
+	
+def form_maker(request):
+	context_dict={}
+	return render(request, 'version1/form_v1.html', context_dict)
 
