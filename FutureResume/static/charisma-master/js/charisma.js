@@ -7,9 +7,9 @@ $(document).ready(function () {
 	// - var currentTheme = $.cookie('currentTheme') == null ? defaultTheme : $.cookie('currentTheme');
 	//var currentTheme = 'slate';
 	// +above
-    //-var msie = navigator.userAgent.match(/msie/i);
-    //-$.browser = {};
-    //-$.browser.msie = {};
+    var msie = navigator.userAgent.match(/msie/i);
+    $.browser = {};
+    $.browser.msie = {};
     //-switchTheme(currentTheme);
 
     $('.navbar-toggle').click(function (e) {
