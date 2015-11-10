@@ -57,3 +57,7 @@ def form_maker(request):
 	context_dict={}
 	return render(request, 'version1/form_v1.html', context_dict)
 
+def echart_v1(request):
+    context_dict={}
+    return render(request, 'version1/echart_v1.html', context_dict)
+

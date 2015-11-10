@@ -1,0 +1,260 @@
+{% extends  "version1/main_page.html"%}
+
+{% block content %}
+
+{% load staticfiles %}
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+
+
+ <div class="row">
+        <div class="box col-md-6">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-th"></i> Grid 6</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row">
+<div id="main2" style="height:400px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+
+        <div class="box col-md-6">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-th"></i> Grid 6</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row">
+<div id="main3" style="height:400px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+
+
+
+
+    <!-- ECharts单文件引入 -->
+
+
+<script src="{% static 'echarts/build/dist/echarts.js' %}"></script>
+
+
+
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: "{% static 'echarts/build/dist' %}"
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/line', 
+                'echarts/chart/scatter',
+                'echarts/chart/k',
+                'echarts/chart/pie',
+                'echarts/chart/radar',
+                'echarts/chart/force',
+                'echarts/chart/chord',
+                'echarts/chart/gauge',
+                'echarts/chart/funnel',
+                'echarts/chart/eventRiver',
+                'echarts/chart/venn',
+                'echarts/chart/treemap',
+                'echarts/chart/tree',
+                'echarts/chart/wordCloud',
+                'echarts/chart/heatmap',
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main2')); 
+                var option = {
+                    tooltip: {
+                        show: true
+                    },
+                    title : {
+                        text: 'WIP Distribution',
+                        subtext: 'kent',
+                        x:'center',
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+                    },
+
+
+                    legend: {
+                        x : 'center',
+                        y : 'bottom',
+                        textStyle: {
+                        color: '#ccc'          // 图例文字颜色
+                        },
+                        data:['销量']
+                    },
+
+                    color: ['#2E64FE','#F4E001','#B5C334'],
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"销量",
+                            "type":"bar",
+                            "data":[5, 20, 25, 10, 10, 20]
+                        }
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+
+                var myChart3 = ec.init(document.getElementById('main3')); 
+
+                var option3 = {
+
+                    title : {
+                        text: 'Yield Trend',
+                        subtext: 'kent',
+                        x:'center',
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+                    },
+
+
+                    tooltip : {
+                        trigger: 'item',
+                        formatter : function (params) {
+                            var date = new Date(params.value[0]);
+                            data = date.getFullYear() + '-'
+                                   + (date.getMonth() + 1) + '-'
+                                   + date.getDate() + ' '
+                                   + date.getHours() + ':'
+                                   + date.getMinutes();
+                            return data + '<br/>'
+                                   + params.value[1] + ', ' 
+                                   + params.value[2];
+                        }
+                    },
+                    /*
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    */
+
+                    dataZoom: {
+                        show: true,
+                        start : 70
+                    },
+
+
+
+                    legend: {
+                        x : 'center',
+                        y : 'bottom',
+                        textStyle: {
+                        color: '#ccc'          // 图例文字颜色
+                        },
+                        data:['series1']
+                    },
+
+
+                    grid: {
+                        y2: 80
+                    },
+
+                    color: ['#F4E001','#B5C334'],
+                    xAxis : [
+                        {
+                            type : 'time',
+                            splitNumber:10
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name: 'series1',
+                            type: 'line',
+                            showAllSymbol: true,
+                            symbolSize: function (value){
+                                return Math.round(value[2]/10) + 2;
+                            },
+                            data: (function () {
+                                var d = [];
+                                var len = 0;
+                                var now = new Date();
+                                var value;
+                                while (len++ < 200) {
+                                    d.push([
+                                        new Date(2014, 9, 1, 0, len * 10000),
+                                        (Math.random()*30).toFixed(2) - 0,
+                                        (Math.random()*100).toFixed(2) - 0
+                                    ]);
+                                }
+                                return d;
+                            })()
+                        }
+                    ]
+                };
+                        
+                // 为echarts对象加载数据 
+                myChart3.setOption(option3); 
+
+            }
+        );
+    </script>
+
+
+
+
+{% endblock %}
+

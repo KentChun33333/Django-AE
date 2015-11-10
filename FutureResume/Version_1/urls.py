@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^main_page/$', views.main_page, name='main_page'),
 	url(r'^form_maker/$', views.form_maker, name='form_maker'),
+	url(r'^echart_v1/$', views.echart_v1, name='echart_v1'),
     #url(r'^E63F2Cv1/$', views. wireframev1,name='E63F2Cv1'),
 	#url(r'^E63F2Cv2/$', views. wireframev2),
     #url(r'^E63F2C/$', views. wireframe),
