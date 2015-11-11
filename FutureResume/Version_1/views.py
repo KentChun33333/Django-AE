@@ -61,3 +61,9 @@ def echart_v1(request):
     context_dict={}
     return render(request, 'version1/echart_v1.html', context_dict)
 
+def inventory_scm_v1(request):
+    context_dict={}
+    return render(request, 'version1/inventory_scm_v1.html', context_dict)
+
+
+
