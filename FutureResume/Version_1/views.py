@@ -6,6 +6,7 @@ from django.http import HttpResponse
 # ORM models
 from django.db import models
 
+
 # part of data slice and dice data with algorithm result
 import numpy as np
 import pandas as pd
@@ -46,7 +47,6 @@ def login_user(request):
                 state = "Your account is not active, please contact the site admin."
         else:
             state = "Your username and/or password were incorrect."
-            
     return render_to_response('version1/auth_v2.html',{'state':state, 'username': username}, RequestContext(request)) # 
 	
 def main_page(request):
@@ -62,8 +62,30 @@ def echart_v1(request):
     return render(request, 'version1/echart_v1.html', context_dict)
 
 def inventory_scm_v1(request):
+    input_data = []
     context_dict={}
     return render(request, 'version1/inventory_scm_v1.html', context_dict)
+
+def FR_main_page(request):
+
+    context_dict={
+    'a': 'What is your habit ?',
+
+    'ABC_script': ''' <script>  $('#ID01').click(function(){ alert( 'What is your habit ?') }); </script>''',
+    }
+    return render(request, 'version1/FR_main_page.html', context_dict)
+
+
+
+def nightgarden(request):
+    context_dict={}
+    return render(request, 'version1/nightgarden.html', context_dict)
+
+#$('#a_b_c').click(function(){window.location = '/echart_v1';});
+
+
+
+
 
 
 
