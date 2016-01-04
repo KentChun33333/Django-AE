@@ -27,6 +27,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+####################################################
+# If need Email sending function                   #
+####################################################
+#                                                  #
+# EMAIL_HOST = 'smpt.gamil.com'                    #
+# EMAIL_HOST_USER = 'youremail@gmail.com'          #
+# EMAIL_HOST_PASSWORD = 'your password'            #
+# EMAIL_PORT = 587                                 #
+# EMAIL_USE_TLS = Ture                             #
+#                                                  #
+####################################################
+# Using gamil, you will need to unlock Captcha to  #
+# enable Django to send for you                    #
+# https//accounts.google.com/displayunlockcaptcha  #
+####################################################
+
+
 
 # Application definition
 
@@ -57,6 +74,22 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'FutureResume.urls'
+
+
+
+
+
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = '/Users/kentchiu/Django-AE/FutureResume/media'
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = '/media/'
+
+
 
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates') #
@@ -119,4 +152,45 @@ STATIC_URL = '/static/' # You may find this is already defined as such.
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
+
+
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+##LOGGING = {
+##    'version': 1,
+##    'disable_existing_loggers': False,
+##    'filters': {
+##        'require_debug_false': {
+##            '()': 'django.utils.log.RequireDebugFalse'
+##        }
+##    },
+##    'handlers': {
+##        'mail_admins': {
+##            'level': 'ERROR',
+##            'filters': ['require_debug_false'],
+##            'class': 'django.utils.log.AdminEmailHandler'
+##        }
+##    },
+##    'loggers': {
+##        'django.request': {
+##            'handlers': ['mail_admins'],
+##            'level': 'ERROR',
+##            'propagate': True,
+##        },
+##    }
+##}
+
 ###

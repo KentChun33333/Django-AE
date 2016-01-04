@@ -107,6 +107,28 @@
 
  </div>
 
+
+
+<div>
+  <p>  Upload </p>
+  <form action="/importAgencyCustomers/" enctype="multipart/form-data" name="form1" method="post" id="form1">  {% csrf_token %}
+            <fieldset class="module aligned ">
+               
+                <div class="form-row">
+                    <div class="form-row">           
+                        {{ form.afile.errors }} 
+                        <label for="id_afile" class="required">&#19978;&#20256;csv&#25991;&#20214;:</label> {{form.afile}}
+                    </div>           
+                </div>
+               
+            </fieldset>
+            <br>
+            <div class="submit-row" >
+                <input type="submit" value="&#20445;&#23384;" class="default" name="_save" onclick="save();"/><input type="submit" value="&#21462;&#28040;" class="default" name="_cancel" onclick="cancel()" />      
+            </div>
+        <form>
+</div>
+
 <div> <h1 id='ID01'> Click me to trigger ABC_script </h1></div>
 
 {{ABC_script|safe}}
@@ -119,39 +141,219 @@ $('#a_b_c').click(function(){window.location = '/echart_v1';});
 
 
 
+
+
+
+
+  <div class="row">
+    <div class="box col-md-12">
+    <div class="box-inner">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="glyphicon glyphicon-user"></i> Datatable + Responsive</h2>
+
+        <div class="box-icon">
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                    class="glyphicon glyphicon-chevron-up"></i></a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+    </div>
+
+
+
+    <div class="box-content">
+
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+
+    <thead>
+    <tr>
+        <th>No </th>
+        <th>Project</th>
+        <th>item </th>
+        <th>owner</th>
+        <th>states</th>
+        <th>description</th>
+        <th>start_time </th>
+        <th>goal_time</th>
+        <th>close_time</th>
+
+    </tr>
+    </thead>
+
+
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Member</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">999</td>
+    </tr>
+  
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Peace</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">998</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Actual</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">997</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Love</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">996</td>
+    </tr>
+
+
+
+
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    <!--/span-->
+
+    </div><!--/row-->
+
+
 <script>
 var s = 'test.js';
 $('#a_b_c2').append('<p>12_'+ s +'</p>');
 </script>
 
+
+
+
+
 <script>
 $.getJSON("{% static 'epic/json/test.js' %}",function(data2){
-  for(var x in data2 ){ //return colunm [ of x in data2 && return index (x in data2.AO)
+ //return colunm [ of x in data2 && return index (x in data2.AO)
     //var i=0;i<cars.length;i++
 //for(var y in data2.x){
 
   //830457
   //nwe!66666666
 
-$('#a_b_c2').append('<p>12_'+ x +'</p>');
+  //////////////////////////////////////////////////////////////////////////////////
+  // $.getJSON("{% static 'epic/json/test.js' %}",function(data2){
+  //        for(var x in data2 ){ $('#a_b_c2').append('<p>12_'+ x +'</p>') }; });
+  /////////////////////////////////////////////////////////////////////////////////
 
-var json2 = {'json' ; data2.x};
+//for(var x in data2 ){ 
+//  $('#a_b_c2').append('<p>12_'+ x +'</p>'); 
+//  for(var y in data2.A1.values()){$('#a_b_c2').append('<p>22_'+ y +'</p>') ;};//
 
-for(var y in json2){$('#a_b_c2').append('<p>12_'+ yv+'</p>');
-
-  };
-
-//};
-      
-  
-  };
-  
-  });
+//};s
+});
 </script>
 
 
 
+
 <script>
+
+
+$.getJSON("{% static 'epic/json/test.js' %}",function(data2){
+  $.each(data2, function(name,x){
+    //$('#a_b_c2').append('<h2>'+ name +':'+x +'</h2>'); 
+    $.each(x,function(key,y){
+      $('#a_b_c2').append('<p>'+key + ':' + y +'</p>'); 
+    })
+  })
+});
+
+
 /*
 $.getJSON("{% static 'epic/json/test.js' %}",function(data2){
 

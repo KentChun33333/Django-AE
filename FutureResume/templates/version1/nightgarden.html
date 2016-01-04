@@ -5,6 +5,138 @@
 
 {% load staticfiles %}
 
+<link href="{% static 'main/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
+
+
+
+<div class="row">
+    <div class="box col-md-6">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Dropzone {{name}}</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                            class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                            class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content" >
+           
+<div class="box col-md-12" style="background : white">
+<form class="dropzone" action="{% url "nightgarden" %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+</form>
+</div>
+
+<button id="submit-all">
+    Submit all files
+</button>
+<script src="{% static 'main/js/dropzone.js' %}"></script>
+<script type="text/javascript">
+    Dropzone.options.myDropzone = {
+        // Prevents Dropzone from uploading dropped files immediately
+        autoProcessQueue : false,
+        init : function() {
+            var submitButton = document.querySelector("#submit-all")
+            myDropzone = this;
+            submitButton.addEventListener("click", function() {
+                myDropzone.processQueue();
+                // Tell Dropzone to process all queued files.
+            });
+            // You might want to show the submit button only when
+            // files are dropped here:
+            this.on("addedfile", function() {
+                // Show submit button here and/or inform user to click it.
+            });}};
+</script>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+
+
+    <div class="box col-md-6">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Form {{name}}</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                            class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                            class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="{% url "nightgarden" %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input name="file" type="file">
+
+                        {{form_2.user}}
+                        {{form_2.docfile}}
+
+{% for s in file_list %}
+<p> {{s}} </p>
+{% endfor %}
+                    </div>
+
+                    <input type="submit" class="btn btn-default">Submit</input>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+
+</div><!--/row-->
+
+
+
+
+    <div class="box col-md-6">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Form {{name}}</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                            class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                            class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form action="{% url "nightgarden" %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form_3.as_p}}
+
+
+                    </div>
+
+                    <input type="submit" class="btn btn-default">Submit</input>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
     <div class="row">
     <div class="box col-md-12">
     <div class="box-inner">
@@ -22,7 +154,6 @@
 
 
     <div class="box-content">
-
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
 
     <thead>
@@ -67,10 +198,92 @@
         <td>1</td>
         <td>1</td>
         <td class="center">2012/01/01</td>
-        <td class="center">Member</td>
+        <td class="center">999</td>
     </tr>
   
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Peace</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
 
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">998</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Actual</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">997</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">Love</td>
+        <td class="center">
+            <span class="label-success label label-default">Active</span>
+        </td>
+        <td class="center">
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="#">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+
+        <td>1</td>
+        <td>1</td>
+        <td class="center">2012/01/01</td>
+        <td class="center">996</td>
+    </tr>
 
 
 
