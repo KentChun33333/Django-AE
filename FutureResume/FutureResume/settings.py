@@ -84,6 +84,11 @@ ROOT_URLCONF = 'FutureResume.urls'
 # Example: "/var/www/example.com/media/"
 MEDIA_ROOT = '/Users/kentchiu/Django-AE/FutureResume/media'
 
+# MEDIA_ROOT
+# models.py 
+# class UploadFile(models.Model):
+#    file = models.FileField(upload_to='files')
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
