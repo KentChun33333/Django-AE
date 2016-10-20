@@ -6,8 +6,6 @@
 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
-
-
  <div class="row">
         <div class="box col-md-12">
             <div class="box-inner">
@@ -30,6 +28,7 @@
             </div>
         </div>
         <!--/span-->
+
 
         <div class="box col-md-12">
             <div class="box-inner">
@@ -74,6 +73,7 @@
             </div>
         </div>
         <!--/span-->
+
 
         <div class="box col-md-12">
             <div class="box-inner">
@@ -916,13 +916,13 @@
                 echarts: "{% static 'echarts/build/dist' %}"
             }
         });
-        
+
         // 使用
         require(
             [
                 'echarts',
                 'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
-                'echarts/chart/line', 
+                'echarts/chart/line',
                 'echarts/chart/scatter',
                 'echarts/chart/k',
                 'echarts/chart/pie',
@@ -940,7 +940,7 @@
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
-                var myChart = ec.init(document.getElementById('main2')); 
+                var myChart = ec.init(document.getElementById('main2'));
                 var option = {
                     tooltip: {
                         show: true
@@ -985,11 +985,11 @@
                         }
                     ]
                 };
-        
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
 
-                var myChart3 = ec.init(document.getElementById('main3')); 
+                // 为echarts对象加载数据
+                myChart.setOption(option);
+
+                var myChart3 = ec.init(document.getElementById('main3'));
 
                 var option3 = {
 
@@ -1014,7 +1014,7 @@
                                    + date.getHours() + ':'
                                    + date.getMinutes();
                             return data + '<br/>'
-                                   + params.value[1] + ', ' 
+                                   + params.value[1] + ', '
                                    + params.value[2];
                         }
                     },
@@ -1088,9 +1088,9 @@
                         }
                     ]
                 };
-                        
-                // 为echarts对象加载数据 
-                myChart3.setOption(option3); 
+
+                // 为echarts对象加载数据
+                myChart3.setOption(option3);
 
             }
         );

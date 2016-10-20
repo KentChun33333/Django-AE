@@ -1,7 +1,7 @@
-# Basic Import 
+# Basic Import
 
 
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 
 from django import forms
@@ -14,7 +14,7 @@ from django.db import models
 # part of data slice and dice data with algorithm result
 import numpy as np
 import pandas as pd
-import psycopg2, os, sys
+import os, sys
 from sqlalchemy import create_engine
 import pandas.io.sql as psql
 
@@ -23,19 +23,29 @@ from datetime import datetime
 import json
 
 # Method = Post and CSRF
-from django.template import RequestContext # 
+# This method is depreciated by 1.10, just use render
+from django.template import RequestContext
 from django.template.context_processors import csrf # For Post Usage
-from django.shortcuts import render_to_response # 
+from django.views.decorators.csrf import csrf_protect
+
 
 # Authentication
-from django.contrib.auth import authenticate, login # 
+from django.contrib.auth import authenticate, login #
 import django.contrib.auth as auth
 
 
-# File Upload 
+# File Upload
 from django.core.urlresolvers import reverse
 from forms import UploadFileForm, UploadDocForm, UploadFileForm_2, Job_2Form, NotusemodelForm
 from models  import UploadFile, Job_2
+
+
+def client_ip_view(request):
+    template = Template('{{ title }}: {{ ip_address }}')
+    context = RequestContext(request, {
+        'title': 'Your IP Address',
+    }, [ip_address_processor])
+    return HttpResponse(template.render(context))
 
 
 def login_user(request):
@@ -55,21 +65,21 @@ def login_user(request):
                 response = HttpResponseRedirect('/main_page',RequestContext(request))
                 #response.set_cookie('username',username,3600)
                 return response
-                #return render_to_response('rango/index.html',{'state':state, 'username': username}, RequestContext(request))
+                #return render('rango/index.html',{'state':state, 'username': username}, RequestContext(request))
                 #
             else:
                 state = "Your account is not active, please contact the site admin."
         else:
             state = "Your username and/or password were incorrect."
-    return render_to_response('version1/auth_v2.html',{'state':state, 'username': username}, RequestContext(request)) # 
-	
+    return render(request,'version1/auth_v2.html', {'state':state, 'username': username}) #
+
 def main_page(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
     else:
         context_dict={}
         return render(request, 'version1/main_page.html', context_dict)
-	
+
 def form_maker(request, question_id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
@@ -83,10 +93,12 @@ def echart_v1(request):
     return render(request, 'version1/echart_v1.html', context_dict)
 
 def inventory_scm_v1(request):
+    import requests
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
     input_data = []
-    context_dict={}
+    content = requests.get('https://github.com/pchab/ProjectRTC').content
+    context_dict={'address': content}
     return render(request, 'version1/inventory_scm_v1.html', context_dict)
 
 ###
@@ -127,6 +139,7 @@ def fileupload(request):
     if request.method == 'POST':
         form_1 = UploadFileForm(request.POST, request.FILES)
         if form_1.is_valid():
+            print ('valid Upload')
             new_file = UploadFile(file=request.FILES['file'])
             new_file.save()
             #handle_uploaded_file(request.FILES['file'])
@@ -138,13 +151,13 @@ def fileupload(request):
         form_1 = UploadFileForm()
     data = { 'form':form_1 }
     # change main to version 1
-    return render_to_response( 'version1/fileupload.html' , data , context_instance=RequestContext(request) )
+    return render(request, 'version1/fileupload.html' , data )
 
 
 def nightgarden(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
-    path = '/Users/kentchiu/Django-AE/FutureResume/media/files'
+    path = '/FutureResume/media/files'
     file_list = list(os.listdir(path))
 
     form_1 = UploadFileForm()
@@ -153,10 +166,10 @@ def nightgarden(request):
 
     if request.method == 'POST':
         form_1 = UploadFileForm(request.POST, request.FILES)
-        
+
 
         #print request.POST
-        
+
         upload_time = datetime.now()
         form_2 = UploadDocForm(request.POST, request.FILES )
 
@@ -170,13 +183,13 @@ def nightgarden(request):
 #######################
 #
 # QueryDict: {
-# u'job_close_time': [u'dfdf'], 
-# u'job_project': [u'fdf'], 
+# u'job_close_time': [u'dfdf'],
+# u'job_project': [u'fdf'],
 # u'job_open_time': [u'dfdf'],
 # u'job_function_item': [u'ddf'],
 # u'job_owner': [u''],
 # u'csrfmiddlewaretoken': [u't0unGn90DwNYbyPYyQGk01mmeWJq6fLs'],
-# u'job_goal_time': [u'dfdf'], 
+# u'job_goal_time': [u'dfdf'],
 # u'job_description': [u'dfdf']}
 #
 #######################
@@ -196,10 +209,10 @@ def nightgarden(request):
 
 
 
-        
+
 
         #print form_2
-        
+
 
 
         #class Document(models.Model):
@@ -222,14 +235,14 @@ def nightgarden(request):
             filename = request.FILES['file'].name
             #handle_uploaded_file(request.FILES['file'])
             data = {'name':filename}
-            return HttpResponse('Form_1 post file and form is_valid')        
+            return HttpResponse('Form_1 post file and form is_valid')
     else:
         form_1 = UploadFileForm()
         form_2 = UploadDocForm()
         form_3 = Job_2Form()
 
     data = {'form_1': form_1, 'file_list':file_list , 'form_2':form_2, 'form_3':form_3}
-    return render_to_response('version1/nightgarden.html', data, context_instance=RequestContext(request))
+    return render(request,'version1/nightgarden.html', data)
 
 
 def handle_uploaded_file(f):
@@ -255,7 +268,7 @@ def test_url(request, question_id):
 
 
 
-class UserForm(forms.Form): 
+class UserForm(forms.Form):
     name = forms.CharField(label='username',max_length=100)
     password = forms.CharField(label='password',widget=forms.PasswordInput())
 
@@ -273,7 +286,7 @@ def regist(req):
             return HttpResponse('regist success!!')
     else:
         uf = UserForm()
-    return render_to_response('version1/regist.html',{'uf':uf}, context_instance=RequestContext(req))
+    return render(req, 'version1/regist.html',{'uf':uf})
 
 
 def login_2(req):
@@ -296,24 +309,24 @@ def login_2(req):
                 return HttpResponseRedirect('/login/')
     else:
         uf = UserForm()
-    return render_to_response('version1/login.html',{'uf':uf},context_instance=RequestContext(req))
+    return render(req, 'version1/login.html',{'uf':uf})
 
-#success login 
+#success login
 def index(req):
     username = req.COOKIES.get('username','')
-    return render_to_response('version1/index.html' ,{'username':username})
+    return render('version1/index.html' ,{'username':username})
 
 
 def logout(req):
     response = HttpResponse('logout !!')
     #clean cookie's username
     response.delete_cookie('username')
-    response.delete_cookie('sessionid')    
+    response.delete_cookie('sessionid')
     return response
 #$('#a_b_c').click(function(){window.location = '/echart_v1';});
 
 
- 
+
 
 
 # Create your views here.
@@ -336,7 +349,7 @@ def register(request):
             return HttpResponse('upload ok!')
     else:
         uf = UserForm()
-    return render_to_response('register.html',{'uf':uf},context_instance=RequestContext(req))
+    return render('register.html',context_instance=RequestContext(req,{'uf':uf}))
 
 
 
@@ -349,7 +362,7 @@ def register(request):
 def NotusemodelView(request):
     form = NotusemodelForm()
     print request.POST
-    print form 
+    print form
     if form.is_valid:
         #print form
         #print request.POST
