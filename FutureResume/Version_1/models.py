@@ -35,7 +35,7 @@ class Document(models.Model):
 	upload_time = models.DateTimeField()
 
 
-#from django.contrib.auth.models import User 
+#from django.contrib.auth.models import User
 class Employee(models.Model):
 	user = models.OneToOneField(User)
 	department = models.CharField(max_length=100)
@@ -58,7 +58,7 @@ class Employee(models.Model):
 #b = Jobs.objects.create(job_project = 'Component-DPPM',	job_function_item = 'DPPM count', job_owner = Owners.objects.get(pk=1),job_description = 'DPPM by sku & lot-code', job_open_time=datetime.now())
 
 #Jobs.objects.values()[0]['id']
-  
+
 
 
 

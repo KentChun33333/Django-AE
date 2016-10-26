@@ -69,7 +69,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 ]
 
@@ -82,10 +82,10 @@ ROOT_URLCONF = 'FutureResume.urls'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/Users/kentchiu/Django-AE/FutureResume/media'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # MEDIA_ROOT
-# models.py 
+# models.py
 # class UploadFile(models.Model):
 #    file = models.FileField(upload_to='files')
 
@@ -121,17 +121,23 @@ WSGI_APPLICATION = 'FutureResume.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'future_resume',
+#        'USER': 'postgres',
+#        'PASSWORD': '1Bxpia2a456789',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'future_resume',
-        'USER': 'postgres',
-        'PASSWORD': '1Bxpia2a456789',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
