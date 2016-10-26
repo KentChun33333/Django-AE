@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from Version_1 import views
+from Version_1 import video_parser_view
 
 
 
@@ -17,6 +18,8 @@ urlpatterns = [
 
 
 	url(r'^NotusemodelView/$', views.NotusemodelView, name='NotusemodelView'),
+
+    url(r'^video_parser/$', video_parser_view.main, name='video_parser'),
 
 
 
