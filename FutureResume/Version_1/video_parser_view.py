@@ -67,7 +67,7 @@ def main(request):
 
 
     data = {'form_1': form_1, 'file_list':file_list }
-    return render(request,'vedio_parser/main.html', data)
+    return render(request,'vedio_parser/vedio_parser_main.html', data)
 
 
 def ajax_res(request):
@@ -81,14 +81,17 @@ def codec_trans(video_file_name):
         # ...
         # ...
         video_file_name.split('.')[0]
-        code='''ffmpeg -i {} -vcodec h264 {}aac.mp4'''.format(video_file_name, video_file_name.split('.')[0] )
+        code='''ffmpeg -i {} -vcodec h264 -vf scale=320:240 {}aac.mp4'''.format(video_file_name, video_file_name.split('.')[0] )
         system(code)
     except:
         return ('the file format is not a standard video with avi or mp4')
-
 
 
 def exec_codec(video_file_name):
     p = Process(target=codec_trans, args=(video_file_name,))
     p.start()
     p.join()
+
+def clean_media_root():
+    pass
+
