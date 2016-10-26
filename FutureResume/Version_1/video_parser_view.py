@@ -46,7 +46,7 @@ def main(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
 
-    path = '/FutureResume/media/files'
+    path = '{}/media/files'.format(os.getcwd())
     file_list = list(os.listdir(path))
 
     form_1 = UploadFileForm()
@@ -54,15 +54,6 @@ def main(request):
 
     if request.method == 'POST':
         form_1 = UploadFileForm(request.POST, request.FILES)
-
-
-        #print request.POST
-
-        upload_time = datetime.now()
-
-
-        #   print form_2
-
 
         if form_1.is_valid():
             new_file = UploadFile(file=request.FILES['file'])
