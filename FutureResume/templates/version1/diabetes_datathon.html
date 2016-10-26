@@ -1,0 +1,528 @@
+{% extends  "version1/main_page_without_sider.html"%}
+
+{% block content %}
+
+{% load staticfiles %}
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+<!-- Dashboard -->
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Dashboard</a>
+        </li>
+    </ul>
+</div>
+<!-- End -->
+
+
+<!--
+<div style="width:320px; height:480px;">
+    <svg id="{% static 'result2_clf_d3.svg' %}" width="100%" height="100%" viewBox="0 0 640 480" preserveAspectRatio="xMaxYMax"></svg>
+</div>
+-->
+                    
+
+<!--
+<img  src="{% static 'result2_clf_d3.svg' %}" class="hidden-xs"/>
+-->
+
+ 
+        <div class="box col-md-6">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-th"></i> Grid 6</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row">
+                          <div id="main2" style="height:400px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box col-md-6">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-th"></i> Grid 6</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content" align="center">
+        
+                        
+                    <video name='demo' class="centre" controls width='100%' height='auto' >
+                        <source src="{% static 'movie.mp4' %}" type="video/mp4"></source>
+                    </video>
+                        
+                </div>
+            </div>
+        </div>
+
+
+</div>
+
+
+
+
+
+
+<!-- Dashboard -->
+<br>
+<br>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#"> : ) </a>
+        </li>
+    </ul>
+<!-- End -->
+
+<!--
+<img  src="{% static 'result2.svg' %}" class="hidden-xs"/>
+-->
+
+
+
+    <!-- ECharts单文件引入 -->
+
+
+<script src="{% static 'echarts/build/dist/echarts.js' %}"></script>
+
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: "{% static 'echarts/build/dist' %}"
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/line', 
+                'echarts/chart/scatter',
+                'echarts/chart/k',
+                'echarts/chart/pie',
+                'echarts/chart/radar',
+                'echarts/chart/force',
+                'echarts/chart/chord',
+                'echarts/chart/gauge',
+                'echarts/chart/funnel',
+                'echarts/chart/eventRiver',
+                'echarts/chart/venn',
+                'echarts/chart/treemap',
+                'echarts/chart/tree',
+                'echarts/chart/wordCloud',
+                'echarts/chart/heatmap',
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                // Chart Start -------------->
+                var myChart = ec.init(document.getElementById('main2')); 
+                var option = {
+                    tooltip: {
+                        show: true
+                    },
+                    title : {
+                        text: 'WIP Distribution',
+                        subtext: 'kent',
+                        x:'center',
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+                    },
+
+
+                    legend: {
+                        x : 'center',
+                        y : 'bottom',
+                        textStyle: {
+                        color: '#ccc'          // 图例文字颜色
+                        },
+                        data:['销量']
+                    },
+
+                    color: ['#2E64FE','#F4E001','#B5C334'],
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"销量",
+                            "type":"bar",
+                            "data":[5, 20, 25, 10, 10, 20]
+                        }
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+                // Chart End ------------->
+
+
+                //
+
+                // Chart Start ------------>
+                var myChart3 = ec.init(document.getElementById('main3')); 
+                var option3 = {
+
+                    title : {
+                        text: 'Yield Trend',
+                        subtext: 'kent',
+                        x:'center',
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+                    },
+
+
+                    tooltip : {
+                        trigger: 'item',
+                        formatter : function (params) {
+                            var date = new Date(params.value[0]);
+                            data = date.getFullYear() + '-'
+                                   + (date.getMonth() + 1) + '-'
+                                   + date.getDate() + ' '
+                                   + date.getHours() + ':'
+                                   + date.getMinutes();
+                            return data + '<br/>'
+                                   + params.value[1] + ', ' 
+                                   + params.value[2];
+                        }
+                    },
+                    /*
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    */
+
+                    dataZoom: {
+                        show: true,
+                        start : 70
+                    },
+
+
+
+                    legend: {
+                        x : 'center',
+                        y : 'bottom',
+                        textStyle: {
+                        color: '#ccc'          // 图例文字颜色
+                        },
+                        data:['series1']
+                    },
+
+
+                    grid: {
+                        y2: 80
+                    },
+
+                    color: ['#F4E001','#B5C334'],
+                    xAxis : [
+                        {
+                            type : 'time',
+                            splitNumber:10
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name: 'series1',
+                            type: 'line',
+                            showAllSymbol: true,
+                            symbolSize: function (value){
+                                return Math.round(value[2]/10) + 2;
+                            },
+                            data: (function () {
+                                var d = [];
+                                var len = 0;
+                                var now = new Date();
+                                var value;
+                                while (len++ < 200) {
+                                    d.push([
+                                        new Date(2014, 9, 1, 0, len * 10000),
+                                        (Math.random()*30).toFixed(2) - 0,
+                                        (Math.random()*100).toFixed(2) - 0
+                                    ]);
+                                }
+                                return d;
+                            })()
+                        }
+                    ]
+                };
+                        
+                // 为echarts对象加载数据 
+                myChart3.setOption(option3); 
+                // Chart END ----------------->
+                var myChart4 = ec.init(document.getElementById('main4')); 
+                var option4 = {
+                    title : {
+                        text: '人物关系：乔布斯',
+                        subtext: '数据来自人立方',
+                        x:'right',
+                        y:'bottom'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: '{a} : {b}'
+                    },
+                    /* ignore tool box...
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            restore : {show: true},
+                            magicType: {show: true, type: ['force', 'chord']},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    */
+                    legend: {
+                        x: 'left',
+                        data:['家人','朋友']
+                    },
+                    series : [
+                        {
+                            type:'force',
+                            name : "人物关系",
+                            ribbonType: false,
+                            categories : [
+                                {
+                                    name: '人物'
+                                },
+                                {
+                                    name: '家人'
+                                },
+                                {
+                                    name:'朋友'
+                                }
+                            ],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,
+                                        textStyle: {
+                                            color: '#333'
+                                        }
+                                    },
+                                    nodeStyle : {
+                                        brushType : 'both',
+                                        borderColor : 'rgba(255,215,0,0.4)',
+                                        borderWidth : 1
+                                    },
+                                    linkStyle: {
+                                        type: 'curve'
+                                    }
+                                },
+                                emphasis: {
+                                    label: {
+                                        show: false
+                                        // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                                    },
+                                    nodeStyle : {
+                                        //r: 30
+                                    },
+                                    linkStyle : {}
+                                }
+                            },
+                            useWorker: false,
+                            minRadius : 15,
+                            maxRadius : 25,
+                            gravity: 1.1,
+                            scaling: 1.1,
+                            roam: 'move',
+                            nodes:[
+                                {category:0, name: '乔布斯', value : 10, label: '乔布斯\n（主要）'},
+                                {category:1, name: '丽萨-乔布斯',value : 2},
+                                {category:1, name: '保罗-乔布斯',value : 3},
+                                {category:1, name: '克拉拉-乔布斯',value : 3},
+                                {category:1, name: '劳伦-鲍威尔',value : 7},
+                                {category:2, name: '史蒂夫-沃兹尼艾克',value : 5},
+                                {category:2, name: '奥巴马',value : 8},
+                                {category:2, name: '比尔-盖茨',value : 9},
+                                {category:2, name: '乔纳森-艾夫',value : 4},
+                                {category:2, name: '蒂姆-库克',value : 4},
+                                {category:2, name: '龙-韦恩',value : 1},
+                            ],
+                            links : [
+                                {source : '丽萨-乔布斯', target : '乔布斯', weight : 1, name: '女儿'},
+                                {source : '保罗-乔布斯', target : '乔布斯', weight : 2, name: '父亲'},
+                                {source : '克拉拉-乔布斯', target : '乔布斯', weight : 1, name: '母亲'},
+                                {source : '劳伦-鲍威尔', target : '乔布斯', weight : 2},
+                                {source : '史蒂夫-沃兹尼艾克', target : '乔布斯', weight : 3, name: '合伙人'},
+                                {source : '奥巴马', target : '乔布斯', weight : 1},
+                                {source : '比尔-盖茨', target : '乔布斯', weight : 6, name: '竞争对手'},
+                                {source : '乔纳森-艾夫', target : '乔布斯', weight : 1, name: '爱将'},
+                                {source : '蒂姆-库克', target : '乔布斯', weight : 1},
+                                {source : '龙-韦恩', target : '乔布斯', weight : 1},
+                                {source : '克拉拉-乔布斯', target : '保罗-乔布斯', weight : 1},
+                                {source : '奥巴马', target : '保罗-乔布斯', weight : 1},
+                                {source : '奥巴马', target : '克拉拉-乔布斯', weight : 1},
+                                {source : '奥巴马', target : '劳伦-鲍威尔', weight : 1},
+                                {source : '奥巴马', target : '史蒂夫-沃兹尼艾克', weight : 1},
+                                {source : '比尔-盖茨', target : '奥巴马', weight : 6},
+                                {source : '比尔-盖茨', target : '克拉拉-乔布斯', weight : 1},
+                                {source : '蒂姆-库克', target : '奥巴马', weight : 1}
+                            ] // close links
+                        }//close series[ {}
+                    ]//close series[]
+                }; //close option_xxx          
+
+                myChart4.setOption(option4);      
+
+                var ecConfig = require('echarts/config');
+                function focus(param) {
+                    var data = param.data;
+                    var links = option.series[0].links;
+                    var nodes = option.series[0].nodes;
+                    if (
+                        data.source !== undefined
+                        && data.target !== undefined
+                    ) { //点击的是边
+                        var sourceNode = nodes.filter(function (n) {return n.name == data.source})[0];
+                        var targetNode = nodes.filter(function (n) {return n.name == data.target})[0];
+                        console.log("选中了边 " + sourceNode.name + ' -> ' + targetNode.name + ' (' + data.weight + ')');
+                    } else { // 点击的是点
+                        console.log("选中了" + data.name + '(' + data.value + ')');
+                    }
+                }
+                myChart4.on(ecConfig.EVENT.CLICK, focus)                
+
+                myChart4.on(ecConfig.EVENT.FORCE_LAYOUT_END, function () {
+                    console.log(myChart4.chart.force.getPosition());
+                });//close mychart_xxx.on
+
+                // Chart Start ---------->
+                var myChart5 = ec.init(document.getElementById('main5')); 
+                var option5 = {
+    title : {
+        text: '预算 vs 开销（Budget vs spending）',
+        subtext: '纯属虚构',
+        textStyle: {
+            fontWeight: 'normal',
+            color: '#fff'          // 主标题文字颜色
+            }
+
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        orient : 'vertical',
+        x : 'right',
+        y : 'bottom',
+        data:['预算分配（Allocated Budget）','实际开销（Actual Spending）'],
+        // Add this secction to change your text be white Start ----->
+        textStyle: {
+                    fontWeight: 'normal',
+                    color: '#fff'          // 主标题文字颜色
+                        }
+        // Section End ----->
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true},
+
+            //
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+                        //
+        }
+    },
+    polar : [
+       {
+           indicator : [
+               { text: '销售（sales）', max: 6000},
+               { text: '管理（Administration）', max: 16000},
+               { text: '信息技术（Information Techology）', max: 30000},
+               { text: '客服（Customer Support）', max: 38000},
+               { text: '研发（Development）', max: 52000},
+               { text: '市场（Marketing）', max: 25000}
+            ],
+
+            //
+                        textStyle: {
+                            fontWeight: 'normal',
+                            color: '#fff'          // 主标题文字颜色
+                        }
+            //
+        }
+    ],
+
+    calculable : true,
+    series : [
+        {
+            name: '预算 vs 开销（Budget vs spending）',
+            type: 'radar',
+
+            data : [
+                {
+                    value : [4300, 10000, 28000, 35000, 50000, 19000],
+                    name : '预算分配（Allocated Budget）'
+                },
+                 {
+                    value : [5000, 14000, 28000, 31000, 42000, 21000],
+                    name : '实际开销（Actual Spending）'
+                }
+            ]
+        }
+    ]
+};
+myChart5.setOption(option5); 
+
+                    
+
+
+            } // close Function(ec)
+        );//close Require
+</script>
+
+ 
+
+
+
+{% endblock %}
+

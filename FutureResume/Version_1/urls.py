@@ -12,7 +12,10 @@ urlpatterns = patterns('',
 	url(r'^echart_v1/$', views.echart_v1, name='echart_v1'),
 	url(r'^inventory_scm_v1/$', views.inventory_scm_v1, name='inventory_scm_v1'),
 	url(r'^fileupload/$', views.fileupload, name='fileupload'),
-
+	# diabetes datathon
+	url(r'^diabetes_datathon/$', views.diabetes_datathon, name='diabetes_datathon'),
+	url(r'^demo/$', views.demo, name='demo'),
+	url(r'^three3d_test/$', views.three3d_test, name='three3d_test'),
 
 
 	url(r'^NotusemodelView/$', views.NotusemodelView, name='NotusemodelView'),

@@ -82,12 +82,31 @@ def echart_v1(request):
     context_dict={}
     return render(request, 'version1/echart_v1.html', context_dict)
 
+def diabetes_datathon(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/',RequestContext(request))
+    context_dict={}
+    return render(request, 'version1/diabetes_datathon.html', context_dict)
+
 def inventory_scm_v1(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/',RequestContext(request))
     input_data = []
     context_dict={}
     return render(request, 'version1/inventory_scm_v1.html', context_dict)
+
+def demo(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/',RequestContext(request))
+    context_dict={}
+    return render(request, 'version1/Demo.html', context_dict)
+
+
+def three3d_test(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/',RequestContext(request))
+    context_dict={}
+    return render(request, 'version1/three3d_test.html', context_dict)
 
 ###
 # #
@@ -239,6 +258,8 @@ def handle_uploaded_file(f):
             destination.write(chunk)
 
 
+def video_Streaming():
+    return
 
     #context_dict={}
     #return render(request, 'version1/nightgarden.html', context_dict)
